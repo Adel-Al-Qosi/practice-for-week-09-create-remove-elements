@@ -6,10 +6,19 @@ add.addEventListener("click", async () => {
         const data = await res.json();
 
         const url = data.message; // URL of new dog image
-
         /*--------------- Get breed (Hint: Parse from URL) ---------------- */
         // Your code here
+        const img = document.createElement('img')
+        img.setAttribute('src', url)
+        const figure = document.createElement('figure')
+        const li = document.createElement('li')
+        const gallery = document.getElementsByTagName('ul')[0];
 
+        figure.appendChild(img)
+
+        li.appendChild(figure)
+
+        gallery.appendChild(li)
         /*------------ Create new dog card with the url above ------------- */
         /* (use the HTML structure for the current dog image in the index.html
             file to create a new image with the url) */
@@ -19,7 +28,8 @@ add.addEventListener("click", async () => {
         // Your code here
 
     } catch (e) {
-        console.log("Couldn't fetch dog :(")
+        
+        console.error(e)
     }
 });
 
@@ -28,7 +38,9 @@ const removeFirst = document.getElementById("remove-first");
 removeFirst.addEventListener("click", () => {
     /*-------------------- Select the first dog card --------------------- */
     // Your code here
-
+    const gallery = document.getElementsByClassName('gallery')[0]
+    const firstDog = gallery.getElementsByTagName('ul')[0].getElementsByTagName('li')[0]
+    firstDog.remove()
     /*-------------------- Remove the first dog card --------------------- */
     // Your code here
 });
@@ -38,7 +50,8 @@ const removeLast = document.getElementById("remove-last");
 removeLast.addEventListener("click", () => {
     /*-------------------- Select the last dog card ----------------------- */
     // Your code here
-
+    const gallery = document.getElementsByTagName('ul')[0]
+    gallery.lastChild.remove()
     /*-------------------- Remove the last dog card ----------------------- */
     // Your code here
 });
